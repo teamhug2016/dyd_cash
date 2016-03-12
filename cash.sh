@@ -24,4 +24,4 @@ if [ $isRunning -eq 0 ]; then
     ${BUILD_IMAGE} sh
 fi;
 
-docker exec -it ${CONTAINER_NAME} sh
+docker exec -it ${CONTAINER_NAME} sh -c "PS1=\"${CONTAINER_NAME}.\w > \" sh"
