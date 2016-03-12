@@ -5,7 +5,16 @@ DEFAULT_IMAGE="node5"
 declare -A imagemap
 imagemap[node5]="dev/node5.7"
 
-IMAGE="${1:-$DEFAULT_IMAGE}"
+
+if [ -e .cashrc ]; then
+  echo "Sourcing cashrc"
+  cat ./.cashrc
+  source ./.cashrc
+fi
+
+IMAGE="${1:-$IMAGE}"
+IMAGE="${IMAGE:-$DEFAULT_IMAGE}"
+
 CONTAINER_NAME="${PWD##*/}.cash_${IMAGE}"
 BUILD_IMAGE=${imagemap[$IMAGE]}
 BUILD_VOLUMES="-v ${PWD}:/data"
