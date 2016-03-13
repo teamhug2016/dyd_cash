@@ -3,7 +3,8 @@
 DEFAULT_IMAGE="node5"
 
 declare -A imagemap
-imagemap[node5]="dev/node5.7"
+imagemap[node5]="dev/tinycore7.0-x86_64-node5.7"
+imagemap[ruby2]="dev/tinycore7.0-x86_64-ruby2.3"
 
 
 if [ -e .cashrc ]; then
