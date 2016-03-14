@@ -20,9 +20,7 @@ IMAGE="${IMAGE:-$DEFAULT_IMAGE}"
 CONTAINER_NAME="${PWD##*/}.cash_${IMAGE}"
 BUILD_IMAGE=${imagemap[$IMAGE]}
 BUILD_VOLUMES="-v ${PWD}:/data"
-if [ -n "$2" ]; then
-    PORTS="-p $2:$2"
-fi
+
 function isContainerRunning() {
   docker ps | grep "$1" | wc -l
 }
@@ -34,7 +32,6 @@ if [ $isRunning -eq 0 ]; then
     --net=host \
     --name ${CONTAINER_NAME} \
     ${BUILD_VOLUMES} \
-    ${PORTS} \
     ${BUILD_IMAGE} sh
 fi;
 
