@@ -2,9 +2,10 @@
 
 DEFAULT_IMAGE="node5"
 
-declare -A imagemap
+declare imagemap
 imagemap[node5]="dev/tinycore7.0-x86_64-node5.7"
 imagemap[ruby2]="dev/tinycore7.0-x86_64-ruby2.3"
+imagemap[groovy]="dev/tinycore7.0-x86_64-groovy2.4"
 
 
 if [ -e .cashrc ]; then
@@ -19,7 +20,9 @@ IMAGE="${IMAGE:-$DEFAULT_IMAGE}"
 CONTAINER_NAME="${PWD##*/}.cash_${IMAGE}"
 BUILD_IMAGE=${imagemap[$IMAGE]}
 BUILD_VOLUMES="-v ${PWD}:/data"
-
+if [ -n "$2" ]; then
+    PORTS="-p $2:$2"
+fi
 function isContainerRunning() {
   docker ps | grep "$1" | wc -l
 }
@@ -31,6 +34,7 @@ if [ $isRunning -eq 0 ]; then
     --net=host \
     --name ${CONTAINER_NAME} \
     ${BUILD_VOLUMES} \
+    ${PORTS} \
     ${BUILD_IMAGE} sh
 fi;
 
