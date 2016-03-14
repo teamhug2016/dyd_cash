@@ -1,10 +1,10 @@
 #!/bin/bash
 
-DEFAULT_IMAGE="node5"
+DEFAULT_IMAGE="node"
 
 declare -A imagemap
-imagemap[node5]="dev/tinycore7.0-x86_64-node5.7"
-imagemap[ruby2]="dev/tinycore7.0-x86_64-ruby2.3"
+imagemap[node]="dev/tinycore7.0-x86_64-node5.7"
+imagemap[ruby]="dev/tinycore7.0-x86_64-ruby2.3"
 imagemap[groovy]="dev/tinycore7.0-x86_64-groovy2.4"
 
 
