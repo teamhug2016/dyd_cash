@@ -2,7 +2,7 @@
 
 DEFAULT_IMAGE="node5"
 
-declare imagemap
+declare -A imagemap
 imagemap[node5]="dev/tinycore7.0-x86_64-node5.7"
 imagemap[ruby2]="dev/tinycore7.0-x86_64-ruby2.3"
 imagemap[groovy]="dev/tinycore7.0-x86_64-groovy2.4"
@@ -27,7 +27,7 @@ function isContainerRunning() {
 
 isRunning=`isContainerRunning ${CONTAINER_NAME}`
 if [ $isRunning -eq 0 ]; then
-  echo "Running $CONTAINER_NAME first time"
+  echo "Running $CONTAINER_NAME:$BUILD_IMAGE first time"
   docker run -dt \
     --net=host \
     --name ${CONTAINER_NAME} \
