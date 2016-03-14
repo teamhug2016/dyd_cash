@@ -19,7 +19,7 @@ IMAGE="${IMAGE:-$DEFAULT_IMAGE}"
 
 CONTAINER_NAME="${PWD##*/}.cash_${IMAGE}"
 BUILD_IMAGE=${imagemap[$IMAGE]}
-BUILD_VOLUMES="-v ${PWD}:/data"
+BUILD_VOLUMES="-v ${PWD}:/data -v ${HOME}/.gradle:/root/.gradle -v ${HOME}/.m2:/root/.m2"
 
 function isContainerRunning() {
   docker ps | grep "$1" | wc -l
